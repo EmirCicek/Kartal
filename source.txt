@@ -1,0 +1,513 @@
+beyaz-ekran-html-start
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>BEYAZ EKRAN</h1>
+</body>
+</html>
+beyaz-ekran-html-end
+
+hava-durumu-html-start
+
+ <!DOCTYPE html>
+ <html lang="tr">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Hava Durumu</title>
+     <style>
+         * {
+             /* Reset */
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+ 
+         body {
+             font-family: "montserrat", sans-serif;
+             color: #fff;
+             background-image: url("img/city.png");
+             background-position: center;
+             background-repeat: no-repeat;
+             background-size: cover;
+             height: 100vh;
+         }
+ 
+         .app {
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             text-align: center;
+             background-color: rgba(0, 0, 0, 0.4);
+             height: 100vh;
+         }
+ 
+         .header h1 {
+             margin-top: 100px;
+             margin-bottom: 15px;
+             color: orange;
+             font-size: 50px;
+         }
+ 
+         .header input {
+             width: 100%;
+             background: transparent;
+             border: 0;
+             outline: 0;
+             text-align: center;
+             border-bottom: 2px solid orange;
+             font-size: 22px;
+             color: #fff;
+         }
+ 
+         .city {
+             margin-top: 30px;
+             font-size: 35px;
+         }
+ 
+         .temp {
+             font-size: 70px;
+             margin-top: 20px;
+         }
+ 
+         .image img {
+             width: 100%; /* Resmin genişliğini ayarla */
+             height: auto; /* Oranları koru */
+         }
+ 
+         .description {
+             font-size: 27px;
+         }
+ 
+         .min_max {
+             margin-top: 10px;
+             font-size: 19px;
+         }
+     </style>
+ </head>
+ <body>
+     <div class="app">
+         <div class="header">
+             <h1>Hava Durumu</h1>
+         </div>
+         <div class="contant">
+             <div class="city"></div>
+             <div class="temp"></div>
+             <div class="image">
+                 <!-- Burada resmi göstermek için bir img etiketi eklenmiştir -->
+                 <img src="" alt="Hava Durumu Görseli">
+             </div>
+             <div class="description"></div>
+             <div class="min_max"></div>
+         </div>
+     </div>
+ 
+     <script src="script.js"></script>
+ </body>
+ </html>
+ 
+
+hava-durumu-html-end
+
+hava-durumu-js-start
+
+
+
+// script.js
+
+const url = "https://api.openweathermap.org/data/2.5/weather";
+const apiKey = "2ab92ea8f83687950a43795cb8d5f2c0";
+
+const getResults = () => {
+    let query = `${url}?q=Izmir&appid=${apiKey}&units=metric&lang=tr`;
+    fetch(query)
+        .then(weather => weather.json())
+        .then(displayResults);
+}
+
+const displayResults = (response) => {
+    let city = response.name;
+    let temp = Math.round(response.main.temp);
+    let desc = response.weather[0].description;
+    let capitalizedDesc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    let icon = response.weather[0].icon;
+    let image = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    let country = response.sys.country;
+    let min = Math.round(response.main.temp_min);
+    let max = Math.round(response.main.temp_max);
+    document.querySelector(".image").style.display = "block";
+
+    let cityElements = document.getElementsByClassName("city");
+    let tempElements = document.getElementsByClassName("temp");
+    let descElements = document.getElementsByClassName("description");
+    let imageElements = document.getElementsByClassName("image");
+    let minMaxElements = document.getElementsByClassName("min_max");
+
+    for (let i = 0; i < cityElements.length; i++) {
+        cityElements[i].innerText = city + ", " + country;
+        tempElements[i].innerText = temp;
+        descElements[i].innerText = capitalizedDesc;
+        imageElements[i].children[0].src = image; 
+        minMaxElements[i].innerText = min + "°C / " + max + "°C";
+    }
+}
+
+window.addEventListener("load", getResults);
+
+hava-durumu-js-end
+
+saat-html-start
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+        .saat_yeri{
+            font-size: 200px;
+            display: flex;
+            justify-content: center;
+            margin-top: 20%;
+        }
+        .tarih_yeri{
+            font-size: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .tarih_yeri #gun{
+            margin-right: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="saat_yeri">
+        <div id="saat" ></div>
+    </div>
+
+    <div class="tarih_yeri">
+        <div id="gun"></div>  <div id="tarih"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+saat-html-end
+
+saat-js-start
+
+const saat = document.getElementById('saat');
+const gun = document.getElementById('gun');
+const tarih = document.getElementById('tarih');
+
+function saatTarihGunu() {
+    let simdikiZaman = new Date();
+    let saat = simdikiZaman.toLocaleTimeString();
+    let gun = simdikiZaman.getDate();
+    let ay = simdikiZaman.getMonth() + 1;
+    let yil = simdikiZaman.getFullYear();
+    let tarih = gun + '-' + ay + '-' + yil;
+    let gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+    let gunAdi = gunler[simdikiZaman.getDay()];
+    let sonuc = {
+        saat: saat,
+        tarih: tarih,
+        gun: gunAdi
+    };
+
+    return sonuc; 
+}
+
+function saat_ayarla (){
+    let result = saatTarihGunu();
+    let s_tarih = String(result.tarih).replaceAll('-', '.')
+    let s_gun = String(result.gun)
+    gun.innerText = s_gun;
+    saat.innerText = result.saat;
+    tarih.innerText = s_tarih;
+}
+
+
+saat_ayarla();
+
+setInterval(saat_ayarla, 1000);
+
+saat-js-end
+
+game-html-start
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <div> 
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+        rel="stylesheet"
+        />
+</div>
+
+<style>
+    .sonuc{
+        display: none;
+    }
+</style>
+</head>
+<body>
+<h1 class="text-center">TAŞ KAĞIT MAKAS OYUNU</h1>
+
+<div class="container secim">
+    <div class="row mx-auto">
+        <div class="col-4"><button id="tas" class="btn mx-5"><img src="img/tas.png" alt="tas"></button></div>
+        <div class="col-4"><button id="kagit" class="btn"><img src="img/kagit.png" alt="kagit"></button></div>
+        <div class="col-4"><button id="makas" class="btn"><img src="img/makas.png" alt="makas"></button></div>
+    </div>
+</div>
+
+
+<div class="sonuc mt-5">
+    <div style="text-align: center;" class="containerr">
+        <div class="row mx-auto">
+            
+            <div class="col-6 oyuncu">
+                <h3>Siz</h3>
+                <img src="img/tas.png" alt="secim">
+            </div>
+            
+            <div class="col-6 bilgisayar">
+                <h3>Bilgisayar</h3>
+                <img src="img/tas.png" alt="secim">
+            </div>
+    </div>
+</div>
+    <h2 class="sonuc-metni" style="text-align: center; margin-top: 200px;">SONUÇ: BERABERE</h2>
+    <div style="text-align: center;" class="mt-5">
+        <button onclick="window.location.reload();" style="margin: auto;" class="btn btn-primary tekrar-oyna">TEKRAR OYNA</button>
+    </div>
+</div>
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
+></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+game-html-end 
+
+game-js-start
+
+const tas = document.getElementById("tas");
+const kagit = document.getElementById("kagit");
+const makas = document.getElementById("makas");
+const sonuc_div = document.querySelector(".sonuc");
+const secim_div = document.querySelector(".secim");
+const sonuc_metni = document.querySelector(".sonuc-metni");
+const tekrar_oyna = document.querySelector(".tekrar-oyna");
+
+function textToSpeech(text) { 
+    // Tarayıcıda Web Speech API destekleniyor mu kontrolü 
+    if ('speechSynthesis' in window) { 
+      // Konuşma nesnesi oluştur 
+      let speechSynthesis = window.speechSynthesis; 
+       
+      // Konuşma metni 
+      let utterance = new SpeechSynthesisUtterance(text); 
+       
+      // Konuşma dili ayarı (İngilizce) 
+      utterance.lang = 'tr-TR'; 
+   
+      // Konuşma başladığında 
+      utterance.onstart = function(event) { 
+        console.log('Ses çalınıyor'); 
+      } 
+   
+      // Konuşma tamamlandığında 
+      utterance.onend = function(event) { 
+        console.log('Ses çalındı'); 
+      } 
+   
+      // Konuşmayı başlat 
+      speechSynthesis.speak(utterance); 
+    } else { 
+      console.error('Web Speech API desteklenmiyor.'); 
+    } 
+  } 
+
+
+
+function kazanani_belirle(){
+
+    let oyuncu = document.querySelector(".oyuncu img").getAttribute("src");
+    let bilgisayar = document.querySelector(".bilgisayar img").getAttribute("src");
+    
+    console.log(oyuncu, bilgisayar);
+    
+    if (oyuncu == bilgisayar) {
+        sonuc_metni.innerHTML = "SONUÇ : BERABERE";
+        textToSpeech("Oyun Sonucu Berabere");
+    }
+    else if (oyuncu == "img/tas.png" && bilgisayar == "img/kagit.png") {
+        sonuc_metni.innerHTML = "SONUÇ : BİLGİSAYAR KAZANDI";
+        textToSpeech("Bilgisayar kazandı");
+    }
+    else if (oyuncu == "img/kagit.png" && bilgisayar == "img/makas.png") {
+        sonuc_metni.innerHTML = "SONUÇ : BİLGİSAYAR KAZANDI";
+        textToSpeech("Bilgisayar kazandı");
+    }
+    else if (oyuncu == "img/makas.png" && bilgisayar == "img/tas.png") {
+        sonuc_metni.innerHTML = "SONUÇ : BİLGİSAYAR KAZANDI";
+        textToSpeech("Bilgisayar kazandı");
+    }
+    else if (oyuncu == "img/tas.png" && bilgisayar == "img/makas.png") {
+        sonuc_metni.innerHTML = "SONUÇ : SİZ KAZANDINIZ";
+        textToSpeech("Siz kazandınız");
+    }
+    else if (oyuncu == "img/kagit.png" && bilgisayar == "img/tas.png") {
+        sonuc_metni.innerHTML = "SONUÇ : SİZ KAZANDINIZ";
+        textToSpeech("Siz kazandınız");
+    }
+    else if (oyuncu == "img/makas.png" && bilgisayar == "img/kagit.png") {
+        sonuc_metni.innerHTML = "SONUÇ : SİZ KAZANDINIZ";
+        textToSpeech("Siz kazandınız");
+    }
+
+
+}
+
+// 1 =>taş
+// 2 =>kağıt
+// 3 =>makas
+
+
+tas.onclick = function() {
+    oyun_basladi = true
+    secim_div.style.display = "none";
+    sonuc_div.style.display = "block";
+    textToSpeech("Taş'ı seçtiniz");
+    let randomSayi = Math.floor(Math.random() * 3) +1;
+    console.log(randomSayi);
+    if (randomSayi == 1) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/tas.png");
+        textToSpeech("Bilgisayarın secimi Taş");
+
+    }
+    else if (randomSayi == 2) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/kagit.png");
+        textToSpeech("Bilgisayarın secimi Kağıt");
+    }
+    else if (randomSayi == 3) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/makas.png");
+        textToSpeech("Bilgisayarın secimi Makas");
+    }
+    document.querySelector(".oyuncu img").setAttribute("src", "img/tas.png");
+    kazanani_belirle();
+}
+
+kagit.onclick = function() {
+    oyun_basladi = true
+    secim_div.style.display = "none";
+    sonuc_div.style.display = "block";
+    textToSpeech("Kağıt'ı seçtiniz");
+    let randomSayi = Math.floor(Math.random() * 3) +1;
+    console.log(randomSayi);
+    // textToSpeech("Bilgisayarın secimi: " + randomSayi);
+    if (randomSayi == 1) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/tas.png");
+        textToSpeech("Bilgisayarın secimi Taş");
+    }
+    else if (randomSayi == 2) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/kagit.png");
+        textToSpeech("Bilgisayarın secimi Kağıt");
+    }
+    else if (randomSayi == 3) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/makas.png");
+        textToSpeech("Bilgisayarın secimi Makas");
+    }
+    document.querySelector(".oyuncu img").setAttribute("src", "img/kagit.png");
+
+    kazanani_belirle();
+}
+
+makas.onclick = function() {
+    document.querySelector(".oyuncu img").setAttribute("src", "img/makas.png");
+    secim_div.style.display = "none";
+    sonuc_div.style.display = "block";
+    textToSpeech("Makas'ı seçtiniz");
+    let randomSayi = Math.floor(Math.random() * 3) +1;
+    console.log(randomSayi);
+    // textToSpeech("Bilgisayarın secimi: " + randomSayi);
+    if (randomSayi == 1) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/tas.png");
+        textToSpeech("Bilgisayarın secimi Taş");
+    }
+    else if (randomSayi == 2) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/kagit.png");
+        textToSpeech("Bilgisayarın secimi Kağıt");
+
+    }
+    else if (randomSayi == 3) {
+        document.querySelector(".bilgisayar img").setAttribute("src", "img/makas.png");
+        textToSpeech("Bilgisayarın secimi Makas");
+    }
+    kazanani_belirle();
+}
+
+game-js-end
+
+kartal-html-start
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* background-color: #000; */
+            overflow: hidden;
+
+        }
+        body > img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/kartal.jpg" alt="kartal">
+</body>
+</html>
+
+kartal-html-end
