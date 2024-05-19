@@ -1,0 +1,16 @@
+<div style="background-color: white;" class="row text-center"> 
+<div style="border: 3px solid black;" class="saat-box col-4"><h3>08:00 - 08:15</h3></div> 
+<div style="border: 3px solid black;" class="etkinlik-box col-8"><h3>Uyan</h3></div> 
+</div> 
+<div style="background-color: white;" class="row text-center"> 
+<div style="border: 3px solid black;" class="saat-box col-4"><h3>08:45 - 16:25</h3></div> 
+<div style="border: 3px solid black;" class="etkinlik-box col-8"><h3>Okul</h3></div> 
+</div> 
+<div style="background-color: white;" class="row text-center"> 
+<div style="border: 3px solid black;" class="saat-box col-4"><h3>17:30 - 18:30</h3></div> 
+<div style="border: 3px solid black;" class="etkinlik-box col-8"><h3>Ödev</h3></div> 
+</div> 
+<div style="background-color: white;" class="row text-center"> 
+<div style="border: 3px solid black;" class="saat-box col-4"><h3>19:00 - 20:10</h3></div> 
+<div style="border: 3px solid black;" class="etkinlik-box col-8"><h3>Antrenman</h3></div> 
+</div> 

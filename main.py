@@ -47,15 +47,35 @@ while True:
                         counter = 0
                         zaman_asimi_aktif = False
                         break
-                    elif 'ışığı aç' in command.lower() or 'lambayı aç' in command.lower():
-                        functions.led_yak()
+                    # elif 'ışığı aç' in command.lower() or 'lambayı aç' in command.lower():
+                    #     functions.led_yak()
+                    #     functions.text_to_speech('Lamba Açıldı')
+                    #     counter = 0
+                    #     zaman_asimi_aktif = False
+                    #     break
+                    # elif 'ışığı kapat' in command.lower() or 'lambayı kapat' in command.lower():
+                    #     functions.led_sondur()
+                    #     functions.text_to_speech('Lamba Kapatıldı')
+                    #     counter = 0
+                    #     zaman_asimi_aktif = False
+                    #     break
+                    elif 'ışığı aç' in command.lower() or 'lambayı aç' in command.lower() or "ışığı yak" in command.lower() or 'lambayı yak' in command.lower():
+                        functions.open_kartal()
+                        functions.led_ac()
                         functions.text_to_speech('Lamba Açıldı')
                         counter = 0
                         zaman_asimi_aktif = False
                         break
-                    elif 'ışığı kapat' in command.lower() or 'lambayı kapat' in command.lower():
-                        functions.led_sondur()
+                    elif 'ışığı kapat' in command.lower() or 'lambayı kapat' in command.lower() or "ışığı söndür" in command.lower() or 'lambayı söndür' in command.lower():
+                        functions.open_kartal()
+                        functions.led_kapat()
                         functions.text_to_speech('Lamba Kapatıldı')
+                        counter = 0
+                        zaman_asimi_aktif = False
+                        break
+                    elif 'programımı aç' in command.lower() or 'günlük programı aç' in command.lower() or 'program' in command.lower():
+                        functions.program_ayarla()
+                        functions.text_to_speech('Program Açıldı')
                         counter = 0
                         zaman_asimi_aktif = False
                         break
@@ -66,6 +86,7 @@ while True:
                     print('Error',error)
                     print(command)
         else:
+            trigger_command = ""
             print("Bekleniyor...")
             if zaman_asimi_aktif:
                 counter += 1

@@ -1,0 +1,64 @@
+pazartesi-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+
+pazartesi-end
+
+salı-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+
+salı-end
+
+çarşamba-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+
+çarşamba-end
+
+perşembe-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+
+perşembe-end
+
+cuma-start
+
+08:00 08:15 Kalk
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+19:30 20:30 Yemek
+22:30 23:00 Kitap-Oku
+
+cuma-end
+
+cumartesi-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+17:30 18:30 Ödev
+19:00 20:10 Antrenman
+
+cumartesi-end
+
+pazar-start
+
+08:00 08:15 Uyan
+08:45 16:25 Okul
+23:30 08:00 Uyku
+17:30 18:30 Ödev
+
+pazar-end

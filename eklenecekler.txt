@@ -1,0 +1,7 @@
+1- Randevu ve programlar
+
+Örneğin kullanıcının o gün doktor randevusu var ve kartalın bunu ona hatırlatması gerekiyor
+
+2- Alarm
+
+Alarmlar eklenicek

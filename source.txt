@@ -249,7 +249,7 @@ saat-js-end
 game-html-start
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -485,7 +485,7 @@ game-js-end
 kartal-html-start
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -511,3 +511,73 @@ kartal-html-start
 </html>
 
 kartal-html-end
+
+
+html-line-1-start
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program</title>
+
+    <!-- MDBOOTSTRAP -->
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+    rel="stylesheet"
+    />
+
+    <style>
+        /* .container {
+            border: 1px solid black;
+            padding: 10px;
+        } */
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <div class="left d-flex row">
+            <div class="col-4"><div style="background-color: white; border: 1px solid black; width: 100%; height: 50px;"><h2 class="text-center">YAPILACAK</h2></div></div>
+            <div class="col-4"><div style="background-color: rgba(0, 0, 255, 0.425); border: 1px solid black; width: 100%; height: 50px;" ><h2 class="text-center">YAPILIYOR</h2></div></div>
+            <div class="col-4"><div style="background-color: greenyellow; border: 1px solid black; width: 100%; height: 50px;" ><h2 class="text-center">YAPILDI</h2></div></div>
+        </div>
+        <div class="right mt-5">
+
+            <h1 class="text-center">Haftalık Program</h1>
+            <div class="main">
+
+
+html-line-1-end
+
+
+html-line-2-start
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- MDBOOTSTRAP SCRIPT -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
+    ></script>
+</body>
+</html>
+
+html-line-2-end
